@@ -9,7 +9,6 @@ include('database.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penisterest</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
 <body>
     <div id="container">
@@ -44,17 +43,24 @@ include('database.php');
 
         <div id="login-container">
             <div id="login">
-                <br>
-                <img src="pin-logo.png" alt="Pinterest Logo" id="logo-img2"><br>
-                    <h1 name="witaj">Witaj na Pintereście</h1><br>
+                <div id="column-login">
+                        <div id="X-login">
+                            <button onclick="cancel()" id="X-btn">X</button>
+                        </div>
+                <br><div id="header-login-container">
+                <div id="login-logo">
+                <img src="pin-logo.png" alt="Pinterest Logo" id="logo-img2"><br></div>
+                    <div id="login-h1"><h1 name="witaj">Witaj na Pintereście</h1></div>
+                </div><br></div>
                 <div id="test">
                     <form action="index.php" method="post" id="form-log">
-                        <div class="log">Adres e-mail</div><br>
-                        <div><input type="text" name="email" id="input-login" placeholder="E-mail"></input></div><br>
-                        <div class="log">Hasło</div><br>
-                        <div><input type="password" name="password" id="input-login" placeholder="Password"></input></div><br>
-                        <div><a href="#" id="pass-forgot">Nie pamiętasz hasła?</a></div>
-                        <div><input type="submit" name="login" value="Zaloguj się"></input></div>
+                        <label>Adres e-mail</label>
+                        <input type="text" name="email" id="input-login" placeholder="E-mail"></input><br>
+                        <label>Hasło</label>
+                        <input type="password" name="password" id="password" id="input-login"  placeholder="Password"></input>
+                        <img src="eyeclose.png" id="eyeclose"></img>
+                        <a href="#" id="pass-forgot">Nie pamiętasz hasła?</a><br>
+                        <input type="submit" name="login" value="Zaloguj się"></input>
                     </form>
                 </div>
                 <?php
@@ -116,6 +122,7 @@ include('database.php');
                                 if($username){
                                     if ($password1==$password2){
                                         $password = $password1;
+                                        $password = md5($password);
                                         $insertQuery = mysqli_query($conn, "INSERT INTO user VALUES (null, '$username', '$email', '$password'");
                                         if($insertQuery){
                                             echo 'You have registered successfully!';
@@ -156,4 +163,6 @@ include('database.php');
 
     </div>    
 </body>
+<script src="script.js"></script>
+
 </html>
